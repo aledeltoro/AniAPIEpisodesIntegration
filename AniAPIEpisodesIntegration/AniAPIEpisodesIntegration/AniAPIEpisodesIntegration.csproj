@@ -25,7 +25,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\ListEpisodesView.xaml">
+    <Compile Update="Views\ListEpisodesPage.xaml.cs">
+      <DependentUpon>ListEpisodesPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\ListEpisodesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AniAPIEpisodesIntegration.Views.ListEpisodesPage"
+             xmlns:viewModel="clr-namespace:AniAPIEpisodesIntegration.ViewModels"
+             xmlns:services="clr-namespace:AniAPIEpisodesIntegration.Services"
+             x:Name="ListEpisodesView">
+    <ContentPage.BindingContext>
+        <viewModel:ListEpisodesViewModel>
+            <x:Arguments>
+                <services:AniApiService/>
+            </x:Arguments>
+        </viewModel:ListEpisodesViewModel>
+    </ContentPage.BindingContext>
+
+    <NavigationPage.TitleView>
+        <Label 
+            Text="Cowboy Bebop episodes"
+            HorizontalOptions="Center"
+            Style="{StaticResource TitleMenuStyle}"/>
+    </NavigationPage.TitleView>
+
+    <CollectionView
+            ItemsSource="{Binding EpisodesList}"
+            ItemsLayout="VerticalList">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Frame
+                    Style="{StaticResource EpisodesListFrame}"
+                    Padding="10">
+                    <Grid
+                        ColumnDefinitions="Auto, *, Auto">
+
+                        <Label
+                            Grid.Column="0"
+                            VerticalOptions="Center"
+                            Text="{Binding Number}"
+                            Style="{StaticResource EpisodesListItemHeader}"/>
+                        <Label
+                            Grid.Column="1"
+                            VerticalOptions="Center"
+                            Text="{Binding Title}"
+                            Style="{StaticResource EpisodesListItemHeader}"/>
+                        <ImageButton
+                            Grid.Column="2"
+                            Source="outline_file_download_black_36"
+                            BackgroundColor="White"
+                            Command="{Binding Source={x:Reference ListEpisodesView}, Path=BindingContext.DownloadEpisodeCommand}"
+                            CommandParameter="{Binding VideoURL}"/>
+                    </Grid>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+        <CollectionView.EmptyView>
+            <Frame>
+                <Grid
+                    RowDefinitions="Auto, Auto, Auto"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center">
+
+                    <Label
+                        Grid.Row="0"
+                        HorizontalTextAlignment="Center"
+                        Text="No episodes to be seen yet!"
+                        Style="{StaticResource EmptyTemplateLabel}"/>
+                    <Button
+                        Grid.Row="1"
+                        Text="Search now"
+                        Command="{Binding SearchEpisodesCommand}"
+                        Style="{StaticResource EmptyTemplateButton}"/>
+                    <ActivityIndicator 
+                        Grid.Row="2"
+                        IsRunning="True" 
+                        IsVisible="{Binding IsLoading}"/>
+                </Grid>
+            </Frame>
+        </CollectionView.EmptyView>
+    </CollectionView>
+</ContentPage>

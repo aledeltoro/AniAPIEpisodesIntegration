@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace AniAPIEpisodesIntegration.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListEpisodesView : ContentPage
+    public partial class ListEpisodesPage : ContentPage
     {
-        public ListEpisodesView()
+        public ListEpisodesPage()
         {
             InitializeComponent();
         }
