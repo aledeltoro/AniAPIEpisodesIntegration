@@ -9,7 +9,7 @@ namespace AniAPIEpisodesIntegration.Services
 {
     public interface IAniApi
     {
-        [Get("/v1/episode?locale=it")]
+        [Get("/v1/episode?locale=it&anime_id=1")]
         Task<HttpResponseMessage> GetEpisodesAsync();
     }
 }

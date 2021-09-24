@@ -11,7 +11,7 @@ namespace AniAPIEpisodesIntegration
         {
             InitializeComponent();
 
-            MainPage = new ListEpisodesView();
+            MainPage = new NavigationPage(new ListEpisodesView());
         }
 
         protected override void OnStart()
