@@ -11,7 +11,7 @@ namespace AniAPIEpisodesIntegration
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new ListEpisodesPage()) { 
+            MainPage = new NavigationPage(new SearchEpisodesPage()) { 
                 BarBackgroundColor = Color.FromHex("#00A19D")
             };
         }

@@ -1,9 +1,7 @@
-﻿using AniAPIEpisodesIntegration.Models;
-using AniAPIEpisodesIntegration.Services;
+﻿using AniAPIEpisodesIntegration.Services;
 using AniAPIEpisodesIntegration.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,12 +12,12 @@ using Xamarin.Forms.Xaml;
 namespace AniAPIEpisodesIntegration.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListEpisodesPage : ContentPage
+    public partial class SearchEpisodesPage : ContentPage
     {
-        public ListEpisodesPage(ObservableCollection<Episode> episodesList)
+        public SearchEpisodesPage()
         {
             InitializeComponent();
-            BindingContext = new ListEpisodesViewModel(episodesList, new DisplayAlertService());
+            BindingContext = new SearchEpisodesViewModel(new DisplayAlertService(), new AniApiService());
         }
     }
 }

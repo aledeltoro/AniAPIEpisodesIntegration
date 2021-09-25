@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AniAPIEpisodesIntegration.Views.SearchEpisodesPage">
+    <NavigationPage.TitleView>
+        <Label 
+            Text="Search episodes"
+            HorizontalOptions="Center"
+            Style="{StaticResource TitleMenuStyle}"/>
+    </NavigationPage.TitleView>
+
+    <Frame>
+        <Grid
+            RowDefinitions="Auto, Auto, Auto"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+            <Label
+                Grid.Row="0"
+                HorizontalTextAlignment="Center"
+                Text="No episodes to be seen yet!"
+                Style="{StaticResource EmptyTemplateLabel}"/>
+            <Button
+                Grid.Row="1"
+                Text="Search now"
+                Command="{Binding SearchEpisodesCommand}"
+                Style="{StaticResource EmptyTemplateButton}"/>
+            <ActivityIndicator 
+                Grid.Row="2"
+                IsRunning="True" 
+                IsVisible="{Binding IsLoading}"/>
+        </Grid>
+    </Frame>
+</ContentPage>

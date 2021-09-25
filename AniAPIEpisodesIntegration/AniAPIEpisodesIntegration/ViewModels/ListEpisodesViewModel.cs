@@ -16,23 +16,17 @@ namespace AniAPIEpisodesIntegration.ViewModels
     {
         public ObservableCollection<Models.Episode> EpisodesList { get; set; }
 
-        private IAniApiService _aniApiService;
         private IDisplayAlertService _displayAlertService;
 
-        public bool IsLoading { get; set; }
-
-        public ICommand SearchEpisodesCommand { get; set; }
         public ICommand DownloadEpisodeCommand { get; set; }
 
         public ListEpisodesViewModel() { }
 
-        public ListEpisodesViewModel(IAniApiService aniApiService, IDisplayAlertService displayAlertService)
+        public ListEpisodesViewModel(ObservableCollection<Episode> episodesList, IDisplayAlertService displayAlertService)
         {
-            _aniApiService = aniApiService;
             _displayAlertService = displayAlertService;
-
-            SearchEpisodesCommand = new Command(SearchEpisodes);
             DownloadEpisodeCommand = new Command<string>(DownloadEpisode);
+            EpisodesList = episodesList;
         }
 
         private async void DownloadEpisode(string videoURL)
@@ -46,25 +40,5 @@ namespace AniAPIEpisodesIntegration.ViewModels
                 await Browser.OpenAsync(videoURI, BrowserLaunchMode.SystemPreferred);
             }
         }
-
-        private async void SearchEpisodes()
-        {
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
-                IsLoading = true;
-
-                var response = await _aniApiService.GetEpisodesAsync();
-
-                IsLoading = false;
-
-                EpisodesList = new ObservableCollection<Episode>(response.Data.Episodes);
-            }
-            else
-            {
-                await _displayAlertService.DisplayInfoAlert("Error", "Missing network connection. Try again later");
-
-            }
-        }
-
     }
 }
