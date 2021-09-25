@@ -9,6 +9,7 @@
         <viewModel:ListEpisodesViewModel>
             <x:Arguments>
                 <services:AniApiService/>
+                <services:DisplayAlertService/>
             </x:Arguments>
         </viewModel:ListEpisodesViewModel>
     </ContentPage.BindingContext>
